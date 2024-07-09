@@ -8,10 +8,10 @@ cd icassp2022/tools
 make virtualenv
 ```
 ## Prepare Audioset
-./scripts/data/train
-└── audios
-  ├── balanced_train_segments/*.wav
-  └── eval_segments/*.wav
+./scripts/data/train  
+└── audios  
+  ├── balanced_train_segments/*.wav  
+  └── eval_segments/*.wav  
 
 
 ## Experiments
