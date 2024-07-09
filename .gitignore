@@ -1,0 +1,20 @@
+# Environments
+tools/venv/
+tools/hear-preprocess/
+tools/pytorch-image-models/
+tools/miniconda.sh
+tools/activate_python.sh
+
+# recepi related
+scripts/exp
+scripts/dump
+scripts/data
+scripts/eda.py
+# job related
+*.out
+
+# exp related
+*.ipynb
+
+__pycache__/
+.vscode/

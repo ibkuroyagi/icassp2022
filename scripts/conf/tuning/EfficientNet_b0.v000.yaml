@@ -1,0 +1,80 @@
+# for paper
+
+# Downloaded Audioset for training file is 1,787,417.
+# Balanced_train file is 18,943.
+# Evaluation file is 17,313.
+# n_gpus=8, batch_size=128, accum_grad=1 (batch_size is as same as 1024)
+# If you use all train file and the batch size is 64, it takes 1,787,417 // 1024 = 1746 steps per 1 epoch.
+# You need to train 100 epochs in the training, you need to set 174,552 steps.
+###########################################################
+#                      GLOBAL SETTING                     #
+###########################################################
+seed: 42
+###########################################################
+#                    PREPROCESS SETTING                   #
+###########################################################
+sr: 16000
+fft_size: 400
+hop_size: 160
+window: hann
+num_mels: 64
+fmin: 60
+fmax: 7800
+sec: 0.960
+###########################################################
+#                     NETWORK SETTING                     #
+###########################################################
+model_type: EfficientNet_b0
+model_params:
+  sample_rate: 16000
+  n_fft: 400
+  hop_length: 160
+  n_mels: 64
+  n_embedding: 512
+  use_pitch_shift: true
+  use_frame_embedding: true
+  parallel: true
+n_embedding: 512
+###########################################################
+#                    TRAINING SETTING                     #
+###########################################################
+# collater_fn
+max_frames: 96
+noise: 0.001
+pitch_shift: 0.2
+embed_time_frame: 3 # 96 / 2^3 = 12
+# dataloader
+batch_size: 512 # Batch size.
+pin_memory: true # Whether to pin memory in Pytorch DataLoader.
+num_workers: 4 # Number of workers in Pytorch DataLoader.
+accum_grads: 2
+###########################################################
+#                       LOSS SETTING                      #
+###########################################################
+similar_fc_type: BilinearSimilarity
+pitch_lambda: 0.01
+frame_lambda: 0.01
+frame_criterion_params:
+  t: 0
+  embed_time_frame: 3
+  reduction: mean
+###########################################################
+#              OPTIMIZER & SCHEDULER SETTING              #
+###########################################################
+optimizer_type: Adam
+optimizer_params:
+  lr: 0.0001
+###########################################################
+#                    INTERVAL SETTING                     #
+###########################################################
+# train_max_steps: 180000 # Number of training steps.
+# save_interval_steps: 30000 # Interval steps to save checkpoint.
+# log_interval_steps: 500 # Interval step for training log.
+# valid_interval_steps: 2000
+train_max_steps: 4000 # Number of training steps.
+save_interval_steps: 2000 # Interval steps to save checkpoint.
+log_interval_steps: 100 # Interval step for training log.
+valid_interval_steps: 200
+###########################################################
+#                     OTHER SETTING                       #
+###########################################################
