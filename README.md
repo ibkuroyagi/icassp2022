@@ -1,10 +1,10 @@
-# hearline-train
+# Icassp2022
 - python3.8
 - CUDA11.3
 ## Install
 ```
-git clone https://git.linecorp.com/ibuki-kuroyanagi/hearline-train.git
-cd hearline-train/tools
+git clone https://github.com/ibkuroyagi/icassp2022.git
+cd icassp2022/tools
 make virtualenv
 ```
 ## Prepare Audioset
@@ -13,13 +13,6 @@ make virtualenv
   ├── balanced_train_segments/*.wav
   └── eval_segments/*.wav
 
-## Prepare evaluation code
-Note : Due to the library alignment, comment out the torch and tensorflow GPU check codes in lines 21~24 of `hear-eval-kit/heareval/embeddings/runner.py`. It works without any problem.
-```
-git clone https://github.com/neuralaudio/hear-eval-kit
-cd ~/hear-eval-kit
-pip3 install -e .
-```
 
 ## Experiments
 ```
